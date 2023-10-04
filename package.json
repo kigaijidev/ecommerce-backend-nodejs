@@ -1,0 +1,35 @@
+{
+  "name": "ecommerce-backend-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:dev": "node --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kigaijidev/ecommerce-backend-nodejs.git"
+  },
+  "author": "chminh19th2@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kigaijidev/ecommerce-backend-nodejs/issues"
+  },
+  "homepage": "https://github.com/kigaijidev/ecommerce-backend-nodejs#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.5.2"
+  },
+  "devDependencies": {
+    "compression": "^1.7.4",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0"
+  }
+}
