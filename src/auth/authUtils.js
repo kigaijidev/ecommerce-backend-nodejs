@@ -8,6 +8,7 @@ const HEADER = {
     API_KEY: 'x-api-key',
     CLIENT_ID: 'x-client-id',
     AUTHORIZATION: 'authorization',
+    REFRESHTOKEN: 'x-refresh-token',
 }
 
 const createTokenPair = async ( payload, publicKey, privateKey ) => {
@@ -35,6 +36,7 @@ const createTokenPair = async ( payload, publicKey, privateKey ) => {
 }
 
 const authentication = asyncHandler( async (req, res, next) => {
+
     const userId = req.headers[HEADER.CLIENT_ID]
     if(!userId){
         throw new AuthFailError('Invalid Request')
@@ -43,6 +45,25 @@ const authentication = asyncHandler( async (req, res, next) => {
     const keyStore = await findByUserId(userId)
     if(!keyStore){
         throw new NotFoundError('Not Found key store')
+    }
+
+    if(req.headers[HEADER.REFRESHTOKEN]){
+        try {
+
+            const refreshToken = req.headers[HEADER.REFRESHTOKEN]
+            const decodeUser = JWT.verify(refreshToken, keyStore.privateKey)
+            
+            if(userId !== decodeUser.userId){
+                throw new AuthFailError('Invalid User')
+            }
+            req.keyStore = keyStore
+            req.user = decodeUser
+            req.refreshToken = refreshToken
+
+            return next()
+        } catch (error) {
+            throw error
+        }
     }
 
     const accessToken = req.headers[HEADER.AUTHORIZATION]
@@ -62,7 +83,12 @@ const authentication = asyncHandler( async (req, res, next) => {
     }
 })
 
+const verifyJWT = async (token, keySecret) => {
+    return await JWT.verify(token, keySecret)
+}
+
 module.exports = {
     createTokenPair,
     authentication,
+    verifyJWT,
 }
