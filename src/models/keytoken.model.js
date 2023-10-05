@@ -10,14 +10,22 @@ var keyTokenSchema = new Schema({
         required:true,
         ref: DOCUMENT_NAME.SHOP
     },
+    privateKey:{
+        type: String,
+        required: true,
+    },
     publicKey:{
         type:String,
         required:true,
     },
-    refreshToken:{
+    refreshTokensUsed:{
         type:Array,
         default: []
     },
+    refreshToken: {
+        type: String,
+        required: true
+    }
 },{
     collection: COLLECTIONS_NAME.KEY,
     timestamps: true,

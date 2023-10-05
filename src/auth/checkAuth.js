@@ -23,7 +23,7 @@ const apiKey = async (req, res, next) => {
                 message: 'Forbidden Error'
             })
         }
-        res.objKey = objKey
+        req.objKey = objKey
         return next()
     } catch (error) {
         
@@ -45,14 +45,7 @@ const permission = ( permission ) => {
     }
 }
 
-const asyncHandler = fn => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(next)
-    }
-}
-
 module.exports = {
     apiKey,
     permission,
-    asyncHandler,
 }
