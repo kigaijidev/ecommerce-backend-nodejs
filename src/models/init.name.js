@@ -5,6 +5,7 @@ const DOCUMENT_NAME = {
     PRODUCT: 'Product',
     CLOTHING: 'Clothing',
     ELECTRONIC: 'Electronic',
+    FURNITURE: 'Furniture',
 }
 
 const COLLECTIONS_NAME = {
@@ -13,7 +14,8 @@ const COLLECTIONS_NAME = {
     API: 'ApiKeys',
     PRODUCT: 'Products',
     CLOTHES: 'Clothes',
-    ELECTRONIC: 'Electronics'
+    ELECTRONIC: 'Electronics',
+    FURNITURES: 'Furnitures',
 }
 
 module.exports = {
