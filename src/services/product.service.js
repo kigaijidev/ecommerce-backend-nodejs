@@ -30,10 +30,14 @@ class ProductFactory {
 
         return new productClass( payload).createProduct();
     }
-
     
-    static async updateProduct({ keySearch }){
-        return await searchProductByUser({ keySearch })
+    static async updateProduct( type, productId, payload ){
+        const productClass = ProductFactory.productRegistry[type];
+        if(!productClass){
+            throw new BadRequestError(`Inavlid Product Type ${type}`)
+        }
+
+        return new productClass( payload).updateProduct(productId);
     }
 
     /**

@@ -1,5 +1,7 @@
 'use strict'
 const { product } = require("../../models/product.model")
+const { insertInventory } = require("../../models/repository/inventory.repo")
+const { updateProductById } = require("../../models/repository/product.repo")
 
 class Product {
     constructor({
@@ -17,9 +19,21 @@ class Product {
     }
 
     async createProduct( product_id ){
-        return await product.create({ ...this, _id: product_id })
+        const newProduct = await product.create({ ...this, _id: product_id })
+        if(newProduct){
+            await insertInventory({
+                productId: newProduct._id,
+                shopId: this.product_shop,
+                stock: this.product_quantity
+            })
+        }
+
+        return newProduct
     }
 
+    async updateProduct( product_id, bodyUpdate ){
+        return await updateProductById({ product_shop: bodyUpdate.product_shop, product_id, bodyUpdate, model: product })
+    }
 }
 
 module.exports = Product

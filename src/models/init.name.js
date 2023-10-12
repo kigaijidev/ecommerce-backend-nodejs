@@ -6,6 +6,8 @@ const DOCUMENT_NAME = {
     CLOTHING: 'Clothing',
     ELECTRONIC: 'Electronic',
     FURNITURE: 'Furniture',
+    INVENTORY: 'Inventory',
+    DISCOUNT: 'Discount',
 }
 
 const COLLECTIONS_NAME = {
@@ -16,6 +18,9 @@ const COLLECTIONS_NAME = {
     CLOTHES: 'Clothes',
     ELECTRONIC: 'Electronics',
     FURNITURES: 'Furnitures',
+    INVENTORY: 'Inventories',
+    DISCOUNT: 'Discounts',
+
 }
 
 module.exports = {

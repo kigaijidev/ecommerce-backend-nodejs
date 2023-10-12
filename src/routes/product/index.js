@@ -7,12 +7,13 @@ const { authentication } = require('../../auth/authUtils')
 const router = express.Router()
 
 router.get('', asyncHandler(productController.findAllProdcuts))
-router.get('/:product_id', asyncHandler(productController.findProduct))
+router.get('/:productId', asyncHandler(productController.findProduct))
 router.get('/search/:keySearch', asyncHandler(productController.getListSearchProduct))
 
 router.use(authentication)
 
-router.post('/create', asyncHandler(productController.createProduct))
+router.post('', asyncHandler(productController.createProduct))
+router.patch('/:productId', asyncHandler(productController.updateProduct))
 
 router.patch('/unpublish/:id', asyncHandler(productController.unPublishProductByShop))
 router.patch('/publish/:id', asyncHandler(productController.publishProductByShop))
