@@ -15,18 +15,18 @@ var discountSchema = new Schema({
     discount_max_uses:{ type: Number, required: true},
     discount_uses_count:{ type: Number, required: true},
     discount_users_used:{ type: Array, default: []},
-    discoutn_max_uses_per_user:{ type: Number, required: true},
-    discoutn_min_order_value:{ type: Number, required: true},
-    discoutn_shopId:{ type: Schema.Types.ObjectId, ref: DOCUMENT_NAME.SHOP},
-    discoutn_is_active:{ type: Boolean, default: true},
+    discount_max_uses_per_user:{ type: Number, required: true},
+    discount_min_order_value:{ type: Number, required: true},
+    discount_shopId:{ type: Schema.Types.ObjectId, ref: DOCUMENT_NAME.SHOP},
+    discount_is_active:{ type: Boolean, default: true},
     discount_applies_to:{ type: String, required: true, enum: ['all','specific']},
     discount_product_ids:{ type: Array, default: []}
 },{
-    collection: COLLECTIONS_NAME.INVENTORY,
+    collection: COLLECTIONS_NAME.DISCOUNT,
     timestamps: true,
 });
 
 //Export the model
 module.exports = {
-    inventory: model(DOCUMENT_NAME.INVENTORY, inventorySchema)
+    discount: model(DOCUMENT_NAME.DISCOUNT, discountSchema)
 };
